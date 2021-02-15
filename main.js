@@ -1,25 +1,23 @@
-var inputTextArray, 
-	strClosed;
-
-var checkSyb = function(syb) {
-	if (syb === '(') {
-		return ')';
-	} else if (syb === '{') {
-		return '}';
-	} else if (syb === '[') {
-		return ']';
-	};
+var obj1 = {
+a:1
+}
+var obj2 = {
+b:2
+}
+var obj3 = {
+c:3
 }
 
-function getText() {
-	strClosed = [];
-	inputTextArray = document.querySelector('[type="text"]').value.split('');
-	for(var i = 0; i < inputTextArray.length; i += 1) {
-		if (checkSyb(inputTextArray[i])) {
-			strClosed.push(checkSyb(inputTextArray[i]));
-		} else if (inputTextArray[i] === strClosed[strClosed.length-1]) {
-			strClosed.pop();
-			};
-		};
-	if(strClosed.length > 0) {console.log(false);}	else {console.log(true);}
+var mixin = function () {
+	var rez = {}, 
+		i, 
+		key;
+	for(i = 0; i < arguments.length; i += 1) {
+		for(key in arguments[i]) {
+			rez[key] = arguments[i][key];
+		}
+	}
+	console.log(rez);
 }
+
+mixin(obj1, obj2, obj3);
